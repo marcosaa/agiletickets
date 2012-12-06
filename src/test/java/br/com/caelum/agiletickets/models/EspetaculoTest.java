@@ -7,6 +7,8 @@ import org.junit.Test;
 
 public class EspetaculoTest {
 
+	
+	
 	@Test
 	public void deveInformarSeEhPossivelReservarAQuantidadeDeIngressosDentroDeQualquerDasSessoes() {
 		Espetaculo ivete = new Espetaculo();
