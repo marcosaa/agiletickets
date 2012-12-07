@@ -106,31 +106,29 @@ public class Espetaculo {
 				int qdeDias = Days.daysBetween(inicio, fim).getDays();
 				
 				for(int i = 0; i <= qdeDias; i++){
-					Sessao sessao = new Sessao();
-					sessao.setInicio(inicio.toDateTime(horario));
-					sessao.setEspetaculo(this);
-					sessao.setIngressosReservados(0);
-					sessao.setTotalIngressos(10);
-					
-					sessoes.add(sessao);
+					criaSessao(inicio, horario, sessoes);
 				}
 	    	}
 			else {
 				int qdeSemanas = Weeks.weeksBetween(inicio, fim).getWeeks();
 				
 				for(int i = 0; i <= qdeSemanas; i++){
-					Sessao sessao = new Sessao();
-					sessao.setInicio(inicio.toDateTime(horario));
-					sessao.setEspetaculo(this);
-					sessao.setIngressosReservados(0);
-					sessao.setTotalIngressos(10);
-					
-					sessoes.add(sessao);
+					criaSessao(inicio, horario, sessoes);
 				}	
 			}
 		}
 		
 		return sessoes;
+	}
+
+	private void criaSessao(LocalDate inicio, LocalTime horario, List<Sessao> sessoes) {
+		Sessao sessao = new Sessao();
+		sessao.setInicio(inicio.toDateTime(horario));
+		sessao.setEspetaculo(this);
+		sessao.setIngressosReservados(0);
+		sessao.setTotalIngressos(10);
+		
+		sessoes.add(sessao);
 	}
 	
 	public boolean Vagas(int qtd, int min)
