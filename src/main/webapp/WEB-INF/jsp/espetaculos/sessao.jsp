@@ -21,6 +21,13 @@
 				<label for="qtde">Quantidade</label>
 				<input id="qtde" name="quantidade"/>
 				
+				<label for="tipo">Tipo Ingresso</label>
+				<select name="tipo" id="tipo">
+				<option value="NORMAL">Normal</option>		
+				<option value="ESTUDANTE">Estudante</option>	
+				<option value="IDOSO">Idoso</option>			
+			    </select>
+				
 				<input type="submit" value="Reservar"/>
 			</form>
 		</c:if>
