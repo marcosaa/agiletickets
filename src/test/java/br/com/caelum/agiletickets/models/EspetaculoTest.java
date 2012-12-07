@@ -3,6 +3,12 @@ package br.com.caelum.agiletickets.models;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
+import junit.framework.Assert;
+
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 import org.junit.Test;
 
 public class EspetaculoTest {
@@ -80,4 +86,54 @@ public class EspetaculoTest {
 
 		return sessao;
 	}
+	
+	@Test
+	public void deveCriarUmaSessaoQuandoDataInicioEDataFimForemIguaisEPeriodicidadeForDiaria() {
+		Espetaculo espetaculo = new Espetaculo();
+		
+		List<Sessao> criaSessoes = espetaculo.criaSessoes(new LocalDate(), new LocalDate(), new LocalTime(), Periodicidade.DIARIA);
+		
+		Assert.assertEquals(1, criaSessoes.size());
+	}
+	
+	@Test
+	public void deveCriarUmaSessaoQuandoDataInicioEDataFimForemIguaisEPeriodicidadeForSemanal() {
+		Espetaculo espetaculo = new Espetaculo();
+		
+		List<Sessao> criaSessoes = espetaculo.criaSessoes(new LocalDate(), new LocalDate(), new LocalTime(), Periodicidade.SEMANAL);
+		
+		Assert.assertEquals(1, criaSessoes.size());
+	}
+	
+	@Test
+	public void deveCriarOnzeSessaoQuandoDataInicioEDataFimForemDiferentesEPeriodicidadeForDiaria() {
+		Espetaculo espetaculo = new Espetaculo();
+		
+		List<Sessao> criaSessoes = espetaculo.criaSessoes(new LocalDate(), new LocalDate().plusDays(10), new LocalTime(), Periodicidade.DIARIA);
+		
+		Assert.assertEquals(11, criaSessoes.size());
+	}
+	
+	@Test
+	public void deveCriarDuasSessaoQuandoDataInicioEDataFimForemDiferentesEPeriodicidadeForSemanal() {
+		Espetaculo espetaculo = new Espetaculo();
+		
+		List<Sessao> criaSessoes = espetaculo.criaSessoes(new LocalDate(), new LocalDate().plusDays(10), new LocalTime(), Periodicidade.SEMANAL);
+		
+		Assert.assertEquals(2, criaSessoes.size());
+	}
+	
+	@Test
+	public void naoDeveCriarSessaoQuandoDataInicioForMaiorQueDataFim() {
+		Espetaculo espetaculo = new Espetaculo();
+		
+		List<Sessao> criaSessoes = espetaculo.criaSessoes(new LocalDate().plusDays(1), new LocalDate(), new LocalTime(), Periodicidade.SEMANAL);
+		
+		Assert.assertEquals(0, criaSessoes.size());
+	}
+	
+	
+	
+	
+	
 }
